@@ -9,9 +9,13 @@ import SwiftUI
 import MapKit
 struct ContentView: View {
     //@State private var newMapCamera:MapCameraPosition = .automatic //initial position
-    @State private var newMapCamera:MapCameraPosition = .region(.userRegion)
+    @State private var newMapCamera:MapCameraPosition = .region(.userRegion)//position based in the extension
     var body: some View {
-        Map(position:$newMapCamera)
+        Map(position:$newMapCamera){
+            Marker("you",systemImage: "car.fill",coordinate: .userLocation)
+                .tint(.purple)
+                
+        }
     }
 }
 
