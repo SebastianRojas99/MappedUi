@@ -13,8 +13,8 @@ struct ContentView: View {
     var body: some View {
         Map(position:$newMapCamera){
             Marker("you",systemImage: "car.fill",coordinate: .userLocation)
-                .tint(.purple)
-                
+            .tint(.purple)
+            
         }
     }
 }
@@ -34,3 +34,17 @@ extension MKCoordinateRegion{
 #Preview {
     ContentView()
 }
+
+/*Annotation("You ", coordinate: .userLocation ){
+ ZStack{
+     Circle()
+         .stroke(Color.blue,lineWidth: 10)
+         .background(Circle().fill(.clear))
+         .frame(width:100 ,height: 100)
+         .overlay{
+             Image(systemName: "car.fill").font(.system(size: 40)).foregroundStyle(.purple).opacity(0.85 )
+         }
+ //Image(systemName: "car.fill").foregroundStyle(Color.purple)
+ }
+ 
+}*/ //annotation for personalization
