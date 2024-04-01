@@ -14,7 +14,19 @@ struct ContentView: View {
         Map(position:$newMapCamera){
             Marker("you",systemImage: "car.fill",coordinate: .userLocation)
             .tint(.purple)
-            
+            Annotation("McDonalds", coordinate: .mcDonaldsTest ){
+             ZStack{
+                 Circle()
+                     .stroke(Color.blue,lineWidth: 3)
+                     .background(Circle().fill(.clear))
+                     .frame(width:35 ,height: 25)
+                     .overlay{
+                         Image(systemName: "mappin").foregroundStyle(.red)
+                     }
+             //Image(systemName: "car.fill").foregroundStyle(Color.purple)
+             }
+             
+            }
         }
     }
 }
@@ -22,6 +34,9 @@ struct ContentView: View {
 extension CLLocationCoordinate2D{
     static var userLocation:CLLocationCoordinate2D{
         return .init(latitude: 25.7602 , longitude: -80.2369)
+    }
+     static var mcDonaldsTest:CLLocationCoordinate2D{
+        return .init(latitude: 25.721620597897765, longitude: -80.27600264490206)
     }
 }
 
