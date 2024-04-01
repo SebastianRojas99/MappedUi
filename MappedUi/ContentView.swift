@@ -16,16 +16,8 @@ struct ContentView: View {
             .tint(.purple)
             Annotation("McDonalds", coordinate: .mcDonaldsTest ){
              ZStack{
-                 Circle()
-                     .stroke(Color.blue,lineWidth: 3)
-                     .background(Circle().fill(.clear))
-                     .frame(width:35 ,height: 25)
-                     .overlay{
-                         Image(systemName: "mappin").foregroundStyle(.red)
-                     }
-             //Image(systemName: "car.fill").foregroundStyle(Color.purple)
+                 Image(systemName: "mappin").foregroundStyle(Color.purple).font(.system(size: 25))
              }
-             
             }
         }
     }
