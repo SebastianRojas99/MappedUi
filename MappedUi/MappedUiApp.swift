@@ -9,9 +9,10 @@ import SwiftUI
 
 @main
 struct MappedUiApp: App {
+    @State private var map = MappedVM()
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView().environment(map)
         }
     }
 }
