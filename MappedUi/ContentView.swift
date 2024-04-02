@@ -21,10 +21,23 @@ struct ContentView: View {
                  }
                 }
             }
+            .overlay(alignment:.topLeading){
+                VStack{
+                    Button{
+                        showSearch = true
+                    }label: {
+                        Image(systemName: "magnifyingglass")
+                            .font(.largeTitle)
+                            .foregroundStyle(.purple)
+                    }
+                }.padding(.leading,15)
+            }
             .sheet(isPresented: $showSearch, content: {
                  SearchSheet(showSearch: $showSearch)
                     .interactiveDismissDisabled()
                     .presentationDetents([.height(150)])
+                    .presentationCornerRadius(15)
+                    .presentationBackground(.ultraThinMaterial)
             })
             .mapControls{
                 MapPitchToggle()

@@ -21,8 +21,10 @@ struct SearchSheet: View {
                     .presentationCornerRadius(6)
                     .foregroundStyle(.primary)
             }
-        }.navigationTitle("Search any place")
-            .navigationBarTitleDisplayMode(.inline )
+        }
+        .padding(.all)
+        .navigationTitle("Search any place")
+            .navigationBarTitleDisplayMode(.inline)
     }
 }
  
