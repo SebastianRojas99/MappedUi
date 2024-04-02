@@ -22,6 +22,12 @@ struct SearchSheet: View {
                     .foregroundStyle(.primary)
             }
         }
+        .onSubmit {
+            Task{
+                await mapModel.searching()
+                showSearch = false
+            }
+        }
         .padding(.all)
         .navigationTitle("Search any place")
             .navigationBarTitleDisplayMode(.inline)

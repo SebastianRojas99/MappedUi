@@ -14,6 +14,15 @@ import MapKit
 class MappedVM{
     var newMapCamera:MapCameraPosition = .region(.userRegion)//position based in the extension
     var search :String = ""
+    var results =  [MKMapItem]()
+    func searching() async{
+        let request = MKLocalSearch.Request()
+        request.naturalLanguageQuery = search
+        request.region = .userRegion
+        let results = try? await MKLocalSearch(request: request).start()
+        self.results = results?.mapItems ?? []
+        search = ""
+    }
 }
 
 extension CLLocationCoordinate2D{
