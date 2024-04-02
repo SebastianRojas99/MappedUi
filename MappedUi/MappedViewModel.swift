@@ -13,6 +13,7 @@ import MapKit
 @Observable
 class MappedVM{
     var newMapCamera:MapCameraPosition = .region(.userRegion)//position based in the extension
+    var search :String = ""
 }
 
 extension CLLocationCoordinate2D{
