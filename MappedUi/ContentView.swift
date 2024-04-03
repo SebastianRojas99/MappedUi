@@ -15,10 +15,10 @@ struct ContentView: View {
             Map(position:  $mapModelBinding.newMapCamera){
                 Marker("you",systemImage: "car.fill",coordinate: .userLocation)
                 .tint(.purple)
-                Annotation("McDonalds", coordinate: .mcDonaldsTest ){
-                 ZStack{
-                     Image(systemName: "mappin").foregroundStyle(Color.purple).font(.system(size: 25))
-                 }
+                
+                ForEach(mapModel.results, id:\.self){ item in
+                    let placemark = item.placemark
+                    Marker(placemark.title ?? "", coordinate: placemark.coordinate)
                 }
             }
             .overlay(alignment:.topLeading){
