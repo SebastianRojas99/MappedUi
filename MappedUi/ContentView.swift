@@ -9,7 +9,7 @@ import SwiftUI
 import MapKit
 struct ContentView: View {
     @Environment(MappedVM.self) var mapModel
-    @State private var showSearch  = true
+    @State private var showSearch = false
     var body: some View {
         @Bindable var mapModelBinding = mapModel
             Map(position:  $mapModelBinding.newMapCamera){
@@ -24,7 +24,7 @@ struct ContentView: View {
             .overlay(alignment:.topLeading){
                 VStack{
                     Button{
-                        showSearch = true
+                        showSearch.toggle()
                     }label: {
                         Image(systemName: "magnifyingglass")
                             .font(.largeTitle)
