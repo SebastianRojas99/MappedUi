@@ -45,13 +45,16 @@ struct ContentView: View {
             })
             .sheet(isPresented: $showSearch, content: {
                  SearchSheet(showSearch: $showSearch)
-                    .interactiveDismissDisabled()
                     .presentationDetents([.height(150)])
                     .presentationCornerRadius(15)
                     .presentationBackground(.ultraThinMaterial)
             })
             .sheet(isPresented:$mapModelBinding.showLocation,content:{
                 LocationView(markerSelector: $mapModelBinding.markerSelection, showLocation: $mapModelBinding.showLocation)
+                    .presentationDetents([.height(150)])
+                    .presentationBackgroundInteraction(.enabled(upThrough: .height(350)))//mantiene ventana y mapa a la vez
+                    .presentationCornerRadius(15)
+                    .presentationBackground(.ultraThinMaterial)
             })
             .mapControls{
                 MapPitchToggle()
