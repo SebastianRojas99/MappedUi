@@ -12,7 +12,7 @@ struct ContentView: View {
     @State private var showSearch = false
     var body: some View {
         @Bindable var mapModelBinding = mapModel
-            Map(position:  $mapModelBinding.newMapCamera){
+        Map(position:  $mapModelBinding.newMapCamera, selection:$mapModelBinding.markerSelection  ){
                 Marker("you",systemImage: "car.fill",coordinate: .userLocation)
                 .tint(.purple)
                 
@@ -30,14 +30,28 @@ struct ContentView: View {
                             .font(.largeTitle)
                             .foregroundStyle(.purple)
                     }
+                    Button{
+                        
+                    }label: {
+                        Image(systemName: "car.fill")
+                            .font(.largeTitle)
+                            .foregroundStyle(.purple)
+                    }
+                    
                 }.padding(.leading,15)
             }
+            .onChange(of:mapModelBinding.markerSelection,{oldValue,newValue in
+                mapModelBinding.showLocation = newValue != nil
+            })
             .sheet(isPresented: $showSearch, content: {
                  SearchSheet(showSearch: $showSearch)
                     .interactiveDismissDisabled()
                     .presentationDetents([.height(150)])
                     .presentationCornerRadius(15)
                     .presentationBackground(.ultraThinMaterial)
+            })
+            .sheet(isPresented:$mapModelBinding.showLocation,content:{
+                LocationView(markerSelector: $mapModelBinding.markerSelection, showLocation: $mapModelBinding.showLocation)
             })
             .mapControls{
                 MapPitchToggle()

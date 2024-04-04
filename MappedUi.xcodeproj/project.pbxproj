@@ -11,6 +11,7 @@
 		9607221F2BBA33A4000E2C8F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9607221E2BBA33A4000E2C8F /* ContentView.swift */; };
 		960722212BBA33A6000E2C8F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 960722202BBA33A6000E2C8F /* Assets.xcassets */; };
 		960722242BBA33A6000E2C8F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 960722232BBA33A6000E2C8F /* Preview Assets.xcassets */; };
+		963D46A62BBE3BAB008F1758 /* LocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963D46A52BBE3BAB008F1758 /* LocationView.swift */; };
 		96EF633A2BBB770F008C2F72 /* MappedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96EF63392BBB770E008C2F72 /* MappedViewModel.swift */; };
 		96EF633C2BBB908F008C2F72 /* SearchSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96EF633B2BBB908F008C2F72 /* SearchSheet.swift */; };
 /* End PBXBuildFile section */
@@ -21,6 +22,7 @@
 		9607221E2BBA33A4000E2C8F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		960722202BBA33A6000E2C8F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		960722232BBA33A6000E2C8F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		963D46A52BBE3BAB008F1758 /* LocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationView.swift; sourceTree = "<group>"; };
 		96EF63392BBB770E008C2F72 /* MappedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MappedViewModel.swift; sourceTree = "<group>"; };
 		96EF633B2BBB908F008C2F72 /* SearchSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSheet.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -61,6 +63,7 @@
 				96EF63392BBB770E008C2F72 /* MappedViewModel.swift */,
 				960722202BBA33A6000E2C8F /* Assets.xcassets */,
 				960722222BBA33A6000E2C8F /* Preview Content */,
+				963D46A52BBE3BAB008F1758 /* LocationView.swift */,
 			);
 			path = MappedUi;
 			sourceTree = "<group>";
@@ -145,6 +148,7 @@
 			files = (
 				9607221F2BBA33A4000E2C8F /* ContentView.swift in Sources */,
 				9607221D2BBA33A4000E2C8F /* MappedUiApp.swift in Sources */,
+				963D46A62BBE3BAB008F1758 /* LocationView.swift in Sources */,
 				96EF633A2BBB770F008C2F72 /* MappedViewModel.swift in Sources */,
 				96EF633C2BBB908F008C2F72 /* SearchSheet.swift in Sources */,
 			);

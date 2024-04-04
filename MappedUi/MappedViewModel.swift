@@ -15,6 +15,9 @@ class MappedVM{
     var newMapCamera:MapCameraPosition = .region(.userRegion)//position based in the extension
     var search :String = ""
     var results =  [MKMapItem]()
+    var markerSelection:MKMapItem?
+    var showLocation = false
+    
     func searching() async{
         let request = MKLocalSearch.Request()
         request.naturalLanguageQuery = search
