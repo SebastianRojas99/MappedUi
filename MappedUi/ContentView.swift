@@ -9,7 +9,7 @@ import SwiftUI
 import MapKit
 struct ContentView: View {
     @Environment(MappedVM.self) var mapModel
-    @State private var showSearch = false
+    @State private var showSearch = true
     var body: some View {
         @Bindable var mapModelBinding = mapModel
         Map(position:  $mapModelBinding.newMapCamera, selection:$mapModelBinding.markerSelection  ){
@@ -24,20 +24,21 @@ struct ContentView: View {
             .overlay(alignment:.topLeading){
                 VStack{
                     Button{
-                        showSearch.toggle()
+                        mapModelBinding.showLocation = false
+                        showSearch = true
                     }label: {
                         Image(systemName: "magnifyingglass")
                             .font(.largeTitle)
                             .foregroundStyle(.purple)
                     }
                     Button{
-                        
+                         
                     }label: {
                         Image(systemName: "car.fill")
                             .font(.largeTitle)
                             .foregroundStyle(.purple)
                     }
-                    
+                     
                 }.padding(.leading,15)
             }
             .onChange(of:mapModelBinding.markerSelection,{oldValue,newValue in
