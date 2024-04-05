@@ -26,6 +26,9 @@ class MappedVM{
         self.results = results?.mapItems ?? []
         search = ""
     }
+    func showRoutes() async{
+        
+    }
 }
 
 extension CLLocationCoordinate2D{
