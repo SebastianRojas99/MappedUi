@@ -17,6 +17,10 @@ class MappedVM{
     var results =  [MKMapItem]()
     var markerSelection:MKMapItem?
     var showLocation = false
+    var getDirection  = false
+    var routeDisplay = false
+    var route : MKRoute?
+    var routeDestination : MKMapItem?
     
     func searching() async{
         let request = MKLocalSearch.Request()
@@ -26,8 +30,24 @@ class MappedVM{
         self.results = results?.mapItems ?? []
         search = ""
     }
-    func showRoutes() async{
-        
+    func fetchRoutes() async{
+        if let markerSelection{
+            let request = MKDirections.Request()
+            request.source = MKMapItem(placemark: .init(coordinate: .userLocation))
+            request.destination = markerSelection
+            Task{
+                let res = try? await MKDirections(request: request).calculate()
+                route = res?.routes.first
+                routeDestination = markerSelection
+                withAnimation(.snappy){
+                    routeDisplay = true
+                    showLocation = false
+                    if let rect = route?.polyline.boundingMapRect, routeDisplay{
+                        newMapCamera = .rect(rect)
+                    }
+                }
+            }
+        }
     }
 }
 
