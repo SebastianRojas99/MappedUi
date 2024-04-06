@@ -15,9 +15,9 @@ class MappedVM{
     var newMapCamera:MapCameraPosition = .region(.userRegion)//position based in the extension
     var search :String = ""
     var results =  [MKMapItem]()
-    var markerSelection:MKMapItem?
+    var markerSelector:MKMapItem?
     var showLocation = false
-    var getDirection  = false
+    var getDirections  = false
     var routeDisplay = false
     var route : MKRoute?
     var routeDestination : MKMapItem?
@@ -29,18 +29,18 @@ class MappedVM{
         let results = try? await MKLocalSearch(request: request).start()
         self.results = results?.mapItems ?? []
         search = ""
-        getDirection = false
+        getDirections = false
         routeDisplay = false
     }
     func fetchRoutes(){
-        if let markerSelection{
+        if let markerSelector{
             let request = MKDirections.Request()
             request.source = MKMapItem(placemark: .init(coordinate: .userLocation))
-            request.destination = markerSelection
+            request.destination = markerSelector
             Task{
                 let res = try? await MKDirections(request: request).calculate()
                 route = res?.routes.first
-                routeDestination = markerSelection
+                routeDestination = markerSelector
                 withAnimation(.snappy){
                     routeDisplay = true
                     showLocation = false
