@@ -11,20 +11,28 @@ struct ContentView: View {
     @Environment(MappedVM.self) var mapModel
     @State private var showSearch = true
     var body: some View {
-        @Bindable var mapModelBinding = mapModel
-        Map(position:  $mapModelBinding.newMapCamera, selection:$mapModelBinding.markerSelection  ){
+        @Bindable var mapModel = mapModel
+        Map(position:  $mapModel.newMapCamera, selection:$mapModel.markerSelection){
                 Marker("you",systemImage: "car.fill",coordinate: .userLocation)
                 .tint(.purple)
                 
                 ForEach(mapModel.results, id:\.self){ item in
-                    let placemark = item.placemark
-                    Marker(placemark.title ?? "", coordinate: placemark.coordinate)
+                    if mapModel.routeDisplay{
+                        if item == mapModel.routeDestination{
+                            let placeMark = item.placemark
+                            Marker(placeMark.title ??  "", coordinate:placeMark.coordinate)
+                        }
+                    }
                 }
+            if let route = mapModel.route{  
+                MapPolyline(route.polyline)
+                    .stroke(.blue,lineWidth: 6)
+            }
             }
             .overlay(alignment:.topLeading){
                 VStack{
                     Button{
-                        mapModelBinding.showLocation = false
+                        mapModel.showLocation = false
                         showSearch = true
                     }label: {
                         Image(systemName: "magnifyingglass")
@@ -41,8 +49,13 @@ struct ContentView: View {
                      
                 }.padding(.leading,15)
             }
-            .onChange(of:mapModelBinding.markerSelection,{oldValue,newValue in
-                mapModelBinding.showLocation = newValue != nil
+            .onChange(of: mapModel.getDirections, {oldValue,newValue in
+                if newValue{
+                    mapModel.fetchRoutes()
+                }
+            })
+            .onChange(of: mapModel.markerSelection,{oldValue,newValue in
+                mapModel.showLocation = newValue != nil
             })
             .sheet(isPresented: $showSearch, content: {
                  SearchSheet(showSearch: $showSearch)
@@ -50,8 +63,8 @@ struct ContentView: View {
                     .presentationCornerRadius(15)
                     .presentationBackground(.ultraThinMaterial)
             })
-            .sheet(isPresented:$mapModelBinding.showLocation,content:{
-                LocationView(markerSelector: $mapModelBinding.markerSelection, showLocation: $mapModelBinding.showLocation)
+            .sheet(isPresented:$mapModel.showLocation,content:{
+                LocationView(markerSelector: $mapModel.markerSelection, showLocation: $mapModel.showLocation, getDirections: $mapModel.getDirections)
                     .presentationDetents([.height(150)])
                     .presentationBackgroundInteraction(.enabled(upThrough: .height(350)))//mantiene ventana y mapa a la vez
                     .presentationCornerRadius(15)
@@ -67,7 +80,5 @@ struct ContentView: View {
 
 
 
-#Preview {
-    ContentView().environment(MappedVM())
-}
+
  

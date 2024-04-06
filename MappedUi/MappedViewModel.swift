@@ -29,8 +29,10 @@ class MappedVM{
         let results = try? await MKLocalSearch(request: request).start()
         self.results = results?.mapItems ?? []
         search = ""
+        getDirection = false
+        routeDisplay = false
     }
-    func fetchRoutes() async{
+    func fetchRoutes(){
         if let markerSelection{
             let request = MKDirections.Request()
             request.source = MKMapItem(placemark: .init(coordinate: .userLocation))
